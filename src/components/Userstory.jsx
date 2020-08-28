@@ -2,10 +2,14 @@ import React, { Component } from 'react'
 import { useState } from 'react';
 import {Link} from 'react-router-dom'
 
+import { UserProvider } from './userContext'
+import Rt from './Rt';
+
 const Userstory = () => {
     const [storysize,setstorysize]=useState('');
     const [storycomplexity,setstorycomplexity]=useState('');
     const [noofuserstories,setnoofuserstories]=useState('');
+    const [Ein,setEin]=useState('');
     
     return ( 
         
@@ -61,7 +65,11 @@ const Userstory = () => {
                 Enter sub user stories: 
                 <input type="text" value={noofuserstories} onChange={(e)=>{setnoofuserstories(e.target.value)}}/>
 
-                <p>Total intial effort:  {storysize*storycomplexity*noofuserstories}</p>
+                <p>Total intial effort:   {storysize*storycomplexity*noofuserstories}</p>
+
+                <UserProvider value={storysize*storycomplexity*noofuserstories}>
+                <Rt/>
+              </UserProvider>
 
                 <Link to='/OptVel'>
                 <button>next</button>
